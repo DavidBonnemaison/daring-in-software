@@ -4,11 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Daring in software</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+		<link rel="stylesheet" href="dist/custom.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,15 +17,438 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2
-						<aside class="notes">
-						<p>Some notes</p>
-						</aside>
-						<p>Some slide text</p>
-						<aside class="notes">
-						<p>and some more notes</p>
+				<!-- Section 1 / Slide 1  -->
+				<section>
+					<h2>👋</h2>
+					<div class="fragment">
+						<h3>David Bonnemaison</h3>
+						<p>Senior Software Engineer @ iAdvize
+						</p>
+						<p>
+							<img src="dist/images/iadvize.png" style="max-height: 140px;" />
+						</p>
+						<p>Frontend enthusiast</p>
+					</div>
+					<aside class="notes">
+						First, let me tell you a story about a young developer, 
+						who's been building interfaces for only a few years.
 					</aside>
+				</section>
+
+				<!-- Section 1 / Slide 2  -->
+				<section>
+					<h2>The year is 2015</h2>
+					<p class="fragment">How do we build interfaces ?</p>
+					<ul style="font-size: 85%;">
+						<li class="fragment">Static HTML/CSS</li>
+						<li class="fragment">Server-side, maybe with templating engines, sprinkled with JS</li>
+						<aside class="notes">
+							- Django, Rails, Laravel, Symfony
+						</aside>
+						<li class="fragment">AngularJS, Ember, Backbone, ... for more complex web apps</li>
+						<aside class="notes">
+							Usually for Single Page Apps
+						</aside>
+					</ul>
+				</section>
+
+				<!-- Section 1 / Slide 3  -->
+				<section>
+					<h2>"Please build a simple calendar"</h2>
+					<div class="grid-container">
+						<ul>
+							<li>A slot can be either busy or free</li>
+							<li>The calendar must be persisted</li>
+						</ul>
+						<img src="dist/images/simple-calendar.png" />
+					</div>
+					<div class="fragment">
+						<p>
+							Good ol' jQuery can take care of that
+						</p>
+						<p>
+							<img src="dist/images/jquery.jpg" style="max-height: 140px;" />
+						</p>
+					</div>
+				</section>
+
+				<!-- Section 1 / Slide 4  -->
+				<section>
+					<pre><code data-trim data-line-numbers>
+						{% for day in days %}
+							<div class="row header">{{ day.label }}</div>
+						{% endfor %}
+						{% for day in days %}
+							<div class="row">
+								{% for slot in slots %}
+									<div 
+										class="slot" 
+										data-state="{{ slot.initialState }}"
+										data-id="{{ slot.id }}">
+										{{ slot.label }}
+									</div>
+								{% endfor %}
+							</div>
+						{% endfor %}
+					</code></pre>
+					<pre><code data-trim data-line-numbers>
+						$('[data-id]').click(function() {
+							var state = $(this).data();
+							$(this).data(state, !state);
+							$(this).toggleClass('busy');
+						});
+
+						function getCalendarData() {
+							return $('[data-id]').map(function(elm) {
+								return elm.data('state');
+							});
+						}
+					</code></pre>
+				</section>
+
+				<!-- Section 1 / Slide 5  -->
+				<section>
+					<h2>Does it work ?</h2>
+					<p class="fragment">Yes</p>
+					<p class="fragment">... but it feels forced</p>
+				</section>
+
+				<!-- Section 1 / Slide 6  -->
+				<section>
+					<h2>Alternatively</h2>
+					<p>Let's give React a try</p>
+					<p class="fragment">A <strong>daring</strong> decision to make in 2015</p>
+				</section>
+
+				<!-- Section 2 / Slide 1  -->
+				<section>
+					<h2><strong>Daring</strong> <span class="fragment fade-out">in software</span></h2>
+				</section>
+				
+				<!-- Section 2 / Slide 2  -->
+				<section>
+					<img src="dist/images/google-screenshot.png" />
+					<div class="fragment">
+						<ul class="fragment strike">
+							<li>
+								Jumping off a cliff
+							</li>
+							<li>
+								Hanging above sharks
+							</li>
+						</ul>
+					</div>
+				<aside class="notes">
+					While researching this topic, I found so many self-help articles.
+					<br />
+					I'll try not to fall in that trap.
+					<br />
+					The "jumping off a cliff" daring means taking risks, as opposed to
+					planning, working hard, following process.
+				</aside>
+				</section>
+
+				<!-- Section 2 / Slide 3  -->
+				<section>
+					<h2>What is daring ?</h2>
+					<div class="grid-container">
+						<div>
+							<img src="dist/images/kant.jpg" />
+							<p>Kant <span class="date">1724 - 1804</span></p>
+						</div>
+						<div>
+							<div class="fragment">
+								<blockquote>Sapere aude</blockquote>
+								<p>"Dare to think"</p>
+							</div>
+							<ol style="padding-left: 10%;">
+								<li class="fragment"><strong>Examine reality</strong>, without preconceptions</li>
+								<li class="fragment"><strong>Change reality</strong>, if it's worth it</li>
+							</ol>
+						</div>
+					</div>
+				</section>
+
+				<!-- Section 2 / Slide 4  -->
+				<section>
+					<h2>Examine reality</h2>
+					<p class="fragment">→ Not giving up the decision to someone else</p>
+					<aside class="notes">
+						Why would we put tests in a separate folder ?
+					</aside>
+					<h2>without preconceptions</h2>
+					<p class="fragment">→ Not because "it's the way it is"</p>
+					<aside class="notes">
+						Challenging a prioris, thinking by yourself
+						<br />
+						Why do we have to follow SOLID principles ?
+						Why shouldn't we have the markup in a JS file ?
+					</aside>
+				</section>
+
+				<!-- Section 2 / Slide 5  -->
+				<section>
+					<h2>Change reality</h2>
+					<p class="fragment">→ dare to do</p>
+					<h2>if it's worth it</h2>
+					<p class="fragment">→ evaluating the benefits, costs and risks</p>
+				</section>
+
+				<!-- Section 3 / Slide 1  -->
+				<section>
+					<h2><strong>Daring</strong> <span class="fragment">in software</span></h2>
+					<p class="fragment">When should we dare ?</p>
+					<p class="fragment">Is React still a daring choice in 2022 ?</p>
+				</section>
+
+				<!-- Section 3 / Slide 2  -->
+				<section>
+					<h2>Back to 2015</h2>
+					<h4>Examining reality</h4>
+					<div class="grid-container">
+						<div class="fragment">
+							<p>Twig + jQuery</p>
+							<ul>
+								<li>Feels forced</li>
+								<li>Hard to understand, hard to maintain</li>
+								<li>Works</li>
+							</ul>
+						</div>
+						<div class="fragment">
+							<p>React</p>
+							<ul>
+								<li>Has a learning curve</li>
+								<li>Is relatively new</li>
+								<li>Seems like a natural fit</li>
+								<li>Maybe won't work</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Section 3 / Slide 3  -->
+				<section>
+					<h2>Back to 2015</h2>
+					<h4>Changing reality</h4>
+					<div class="r-stack">
+						<div class="fragment fade-out" data-fragment-index="0" >
+							<pre >
+								<code data-trim data-line-numbers>
+									{% for day in days %}
+										<div class="row header">{{ day.label }}</div>
+									{% endfor %}
+									{% for day in days %}
+										<div class="row">
+											{% for slot in slots %}
+												<div 
+													class="slot" 
+													data-state="{{ slot.initialState }}"
+													data-id="{{ slot.id }}">
+													{{ slot.label }}
+												</div>
+											{% endfor %}
+										</div>
+									{% endfor %}
+								</code>
+							</pre>
+							<pre>
+								<code data-trim data-line-numbers>
+								$('[data-id]').click(function() {
+									var state = $(this).data();
+									$(this).data(state, !state);
+									$(this).toggleClass('busy');
+								});
+								</code>
+							</pre>
+						</div>
+						<pre class="fragment" data-fragment-index="1" >
+							<code data-trim data-line-numbers>
+								class Calendar extends React.Component {
+									constructor(props) {
+										super(props);
+										this.toogleSlot = this.toogleSlot.bind(this);
+										this.state = {
+											// ...
+										};
+									}
+									// ...
+									render() {
+										const {days, slots} =  this.props;
+										return (
+											<div>
+												{days.map(day => 
+													<div class="row header" key={day.id}>{day.label}</div>
+												)}
+												{days.map(day => (
+													<div class="row" key={row.id}>
+														{slots.map(slot => (
+															<div 
+																class="slot" 
+																onClick={this.toogleSlot(slot.id)} 
+																key={slot.id}
+																>
+																{slot.label}
+															</div>
+														)
+													</div>
+													)
+											</div>
+											)
+										}
+									}			
+							</code>
+						</pre>
+					</div>
+				</section>
+
+				<!-- Section 3 / Slide 4  -->
+				<section>
+					<h2>Is reality better ?</h2>
+					<p class="fragment">Not really<span class="fragment">, but : </span></p>
+					<ul class="fragment" style="font-size: 80%;">
+						<li>They got to learn how to use a new valuable tool</li>
+						<li class="fragment">In the end, the feature got easier to change</li>
+						<li class="fragment">It helped them recruit new people</li>
+					</ul>
+					<aside class="notes">
+						Here already, we can see that being daring was not "the right" choice,
+						because there was no rationally good or bad choice. It was a decision,
+						that led to more opportunities.
+						<br />
+						That means that we have to dare to think by ourselves (here, choosing
+						an emerging technology over the established one), but when there is no
+						"right" choice, we also need to dare to decide.
+					</aside>
+				</section>
+
+				<!-- Section 3 / Slide 5  -->
+				<section>
+					<h2>A JavaScript to TypeScript migration</h2>
+					<div class="fragment">
+						<h4>Examining reality</h4>
+						<ul>
+							<li>Would it be better ?</li>
+							<li>Is the team ready ?</li>
+							<li>Can we afford it ?</li>
+							<li>Can we afford <strong>not to do it</strong> ?</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Section 3 / Slide 6  -->
+				<section>
+					<h2>Refactoring</h2>
+					<ul style="font-size: 90%;">
+						<li>Should we take a step back and remodel our domain ?</li>
+						<li>Should we switch to functional programming ?</li>
+						<li>Is Redux the best choice for us ?</li>
+						<li>Should we untangle that spaghetti ?</li>
+						<li>Should we build our own event emitter ?</li>
+					</ul>
+				</section>
+
+				<!-- Section 3 / Slide 7  -->
+				<section>
+					<h2>Hold on</h2>
+					<p class="fragment">"Think before you act" ?</p>
+					<p class="fragment">→ <strong>Dare</strong> to think, then maybe act</p>
+				</section>
+				
+				<!-- Section 3 / Slide 8  -->
+				<section>
+					<h2>Isn't that just being reckless ?</h2>
+					<div>
+						<p class="fragment">Daring is not risking</p>
+						<p class="fragment">
+							It's sometimes riskier <strong>not</strong> to dare (missed opportunities, frustration)
+						</p>
+					</div>
+					<aside class="notes">
+						Daring is not being irresponsible, it's not taking risks either.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Risk spectrum</h2>
+					<img src="dist/images/aristote.webp" style="max-height: 200px;" />
+					<p style="margin-top: -1rem;">
+						Aristotle
+						<span class="date">384 - 322 BC</span>
+					</p>
+					<img src="dist/images/risk-spectrum.png" />
+					<aside class="notes">
+						Daring is not loving the risk : that would be recklessness.
+						<br />
+						It's not fearing the risk either, that would be cautiousness.
+						<br />
+						Daring is loving the risk that's left, once 
+					</aside>
+				</section>
+
+				<!-- Section 4 / Slide 1  -->
+				<section>
+					<h2>When should we dare ?</h2>
+					<div style="font-size: 90%;">
+						<p class="fragment">Examining the reality : always dare to think</p>
+						<div class="fragment">
+							<p>Changing the reality :</p>
+							<ul>
+								<li>Risk analysis</li>
+								<li>Bounded rationality</li>
+								<li>Select what is satisfactory, not optimal</li>
+							</ul>
+						</fiv>
+						<p class="fragment">Dare to <strong>fail</strong> : better to try and fail than having regrets</p>
+						<aside class="notes">
+							Whatever we decide, it might fail.
+							<br />
+							What kind of failure feels best : the one where we tried and failed, or the one where we just let things fail ?
+							<br />
+							Same for success : "A vaincre sans péril, on triomphe sans gloire." Corneille
+						</aside>
+					</div>
+				</section>
+
+				<!-- Section 4 / Slide 2  -->
+				<section>
+					<h2>How can we dare ?</h2>
+					<div class="grid-container fragment">
+						<div>
+							<img src="dist/images/nietzsche.jpg" style="display: block;" />
+							Nietzsche
+							<span class="date">1844 - 1900</span>
+						</div>
+						<div style="font-size: 90%;">
+							<blockquote>"Become who you are"</blockquote>
+							<ul>
+								<li class="fragment">Balance between submission to the norm and individuality</li>
+								<li class="fragment">Courage : overcoming the fear of change</li>
+								<li class="fragment">Some companies make it easy</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Section 4 / Slide 3  -->
+				<section>
+					<h2>Is React a daring choice ? <span class="fragment" style="font-size: 50%;">and a good idea ?</span></h2>
+					<p class="fragment">2015 : yes <span style="font-size: 50%;">(and maybe)</span></p>
+					<p class="fragment">2022 : no <span style="font-size: 50%;">(but probably)</span></p>
+				</section>
+
+
+				<!-- Section 4 / Slide 4  -->
+				<section>
+					<h2><strong>Daring</strong> in software</h2>
+					<em style="font-size: small; margin-top: -1rem; display: block;">Slides : <a href="https://davidbonnemaison.github.io/daring-in-software">https://davidbonnemaison.github.io/daring-in-software</a></em>
+					<p class="fragment">Thank you all for listening</p>
+					<p class="fragment">Questions for me ? <span style="font-size:medium;display: block;">(warning : not a philosophy expert)</span></p>
+					<div class="fragment">
+						<p>Question for <strong>you</strong> : </p>
+						<blockquote style="font-size: 80%;">
+							If not React, what's the daring choice in 2022 ?
+						</blockquote>
+					</div>
 				</section>
 			</div>
 		</div>
@@ -39,6 +463,7 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				controls: false,
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
